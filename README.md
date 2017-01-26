@@ -8,13 +8,13 @@ Goals of the project given by our instructors from Udacity:
 
 ## Useful info
 
-Public IP address: 35.166.39.105
+Public IP address: 52.32.139.234
 
 Accessible SSH port: 2200.
 
 grader password: vqX#Dx9y&Uw=hMsz
 
-Login Grader: ssh -p 2200 grader@35.166.39.105
+Login Grader: ssh -p 2200 grader@52.32.139.234
 ## Step by step walkthrough
 
 ### 1 - Development Environment
@@ -25,7 +25,7 @@ Source: [Udacity](https://www.udacity.com/account#!/development_environment)
 3. Set file authorities (only owner can write and read.):
 `chmod 600 ~/.ssh/udacity_key.rsa`
 4. Log into the remote VM as *root* user through ssh: 
- `$ ssh -i ~/.ssh/udacity_key.rsa root@35.166.39.105`.
+ `$ ssh -i ~/.ssh/udacity_key.rsa root@52.32.139.234`.
 
 ### 2 - Update and Upgrade all currently installed packages
 1. Update and Upgrade all currently installed packages
@@ -79,21 +79,21 @@ Source: [Ubuntu forums](http://ubuntuforums.org/showthread.php?t=1739013) , [Ask
     ii. Log into the remote VM as root user through ssh and create the following file:
     `$ touch ~/.ssh/authorized_keys`
 `$ cat ~/.ssh/id_rsa.pub`
-`$ ssh-copy-id grader@35.166.39.105 -p2200`
+`$ ssh-copy-id grader@52.32.139.234 -p2200`
 `$ sudo chmod 644 ~/.ssh/authorized_keys`
 `$ sudo chown -R grader:grader ~/.ssh`
     iii. Login to new user:
-    `$ ssh -v grader@35.166.39.105 -p2200`
+    `$ ssh -v grader@52.32.139.234 -p2200`
     iv. Change PasswordAuthentication back from yes to no.
     `sudo nano /etc/ssh/sshd_config`
 
-4. Now you are able to log into the remote VM through ssh with the following command: `$ ssh -i ~/.ssh/udacity_key.rsa -p 2200 grader@35.166.39.105`.
+4. Now you are able to log into the remote VM through ssh with the following command: `$ ssh -i ~/.ssh/udacity_key.rsa -p 2200 grader@52.32.139.234`.
 5. In order to prevent the "sudo: unable to resolve host" error, edit the hosts:
     i.  Open `$ vim /etc/hostname`.   
     ii. Copy the hostname.
     iii. Append the hostname to the first line:
         `$ sudo nano /etc/hosts`
-        example: Add the host: `127.0.1.1 ip-10-20-55-24`
+        example: Add the host: `127.0.1.1 ip-10-20-33-156`
 
 Source: [Askubuntu](http://askubuntu.com/questions/27559/how-do-i-disable-remote-ssh-login-as-root-from-a-server).
 
@@ -170,6 +170,7 @@ logging.basicConfig(stream=sys.stderr)
 sys.path.insert(0, "/var/www/catalog/")
 
 from catalog import app as application
+application.secret_key = '@@#Jasd2uioh@Oh&*(EGSD8ASDH'
 ```
 5. Some tweaks were needed to deploay the catalog app, so I made a *deployment* branch which slightly differs from the *master*. Move inside the repository, `$ cd /var/www/catalog/catalog` and change branch with: `$ git checkout deployment`.
 
@@ -212,8 +213,8 @@ Source: [Stackoverflow](http://stackoverflow.com/questions/12728004/error-no-mod
 2. Paste in the following lines of code:
 ```
 <VirtualHost *:80>
-    ServerName 35.166.39.105
-    ServerAdmin admin@35.166.39.105
+    ServerName 52.32.139.234
+    ServerAdmin admin@52.32.139.234
     WSGIDaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/venv/lib/python2.7/site-packages
     WSGIProcessGroup catalog
     WSGIScriptAlias / /var/www/catalog/catalog.wsgi
